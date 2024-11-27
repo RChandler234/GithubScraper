@@ -11,6 +11,8 @@ flask = "^3.1.0"
 waitress = "^3.0.2"
 flask-sqlalchemy = "^3.1.1"
 flask-migrate = "^4.0.7"
+pg8000 = "^1.31.2"
+sqlalchemy = "^2.0.36"
 
 
 [tool.poetry.group.dev.dependencies]
