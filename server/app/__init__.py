@@ -4,13 +4,18 @@ import uuid
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.sql import func
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 
+# TODO: env var
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+pg8000://postgres@localhost:5432/postgres"
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+# TODO: env var
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 class UsersModel(db.Model):
     __tablename__ = 'users'
