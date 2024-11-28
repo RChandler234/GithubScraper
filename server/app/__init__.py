@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from flask_sqlalchemy import SQLAlchemy
@@ -62,7 +62,23 @@ def root():
 
 from app.controllers.projects_controller import projects
 from app.controllers.users_controller import users
+from app.utils.error import ServerException
 
 app.register_blueprint(users, url_prefix='/users')
 app.register_blueprint(projects, url_prefix='/projects')
+
+@app.errorhandler(ServerException)
+def handle_exception(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+@app.errorhandler(404)
+def handle_not_found_error(error):
+    response = jsonify({
+        "error": "Not Found",
+        "status_code": 404
+    })
+    response.status_code = 404
+    return response
 

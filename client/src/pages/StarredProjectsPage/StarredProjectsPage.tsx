@@ -1,12 +1,30 @@
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  FormControl,
+  FormHelperText,
+  Typography,
+} from "@mui/material";
 import { useMostStarredProjects } from "../../hooks/projects.hooks";
 import ProjectCard from "../../components/ProjectCard";
 import CustomNumberInput from "../../components/CustomNumberInput";
 import { useState } from "react";
+import { ErrorComponent } from "../../components/ErrorComponent";
 
 const StarredProjectsPage = () => {
   const [numInputValue, setNumInputValue] = useState<number | null>(null);
   const [numProjects, setNumProjects] = useState<number>(0);
+  const [formError, setFormError] = useState<string | undefined>(undefined);
+
+  const handleInputValChange = (val: number | null) => {
+    if (val && val < 0) {
+      setFormError("Number of Users Must be Postive");
+    } else {
+      setFormError(undefined);
+      setNumInputValue(val);
+    }
+  };
 
   const {
     data: projects,
@@ -14,10 +32,6 @@ const StarredProjectsPage = () => {
     isError,
     error,
   } = useMostStarredProjects(numProjects);
-
-  if (isError) {
-    return <div>{error.message}</div>;
-  }
 
   return (
     <Box
@@ -37,10 +51,20 @@ const StarredProjectsPage = () => {
           Most Starred Projects
         </Typography>
         <Box marginY="15px" marginX="30px">
-          <CustomNumberInput
-            value={numInputValue}
-            setValue={setNumInputValue}
-          />
+          <FormControl variant="standard" fullWidth>
+            <CustomNumberInput
+              value={numInputValue}
+              setValue={handleInputValChange}
+            />
+            {formError && (
+              <FormHelperText
+                id="component-error-text"
+                sx={{ color: "#B94A48" }}
+              >
+                {formError}
+              </FormHelperText>
+            )}
+          </FormControl>
         </Box>
         <Box marginX="30px">
           <Button
@@ -68,7 +92,9 @@ const StarredProjectsPage = () => {
           padding: "20px",
         }}
       >
-        {isLoading || !projects ? (
+        {isError || error ? (
+          <ErrorComponent errorMessage={error.message} />
+        ) : isLoading || !projects ? (
           <CircularProgress />
         ) : (
           projects.map((project, idx) => (

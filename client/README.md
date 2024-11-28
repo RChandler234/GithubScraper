@@ -12,6 +12,8 @@ Run `npm run dev` to run the project in development mode
 
 ## Use Cases
 
-There is a different page for each of the following use cases
+There is a different page for each of the following use cases:
 
-TODO: add use cases
+- Retrieving User Projects from Github (and saving in the database)
+- Getting the n most recent users created in the database
+- Returning the n most starred projects in the database

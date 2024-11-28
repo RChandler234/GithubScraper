@@ -13,6 +13,9 @@ export const useMostStarredProjects = (numProjects: number) => {
     async () => {
       const data = await getMostStarredProjects(numProjects);
       return data;
+    },
+    {
+      retry: 1,
     }
   );
 };

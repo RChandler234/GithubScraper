@@ -1,18 +1,32 @@
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  FormControl,
+  FormHelperText,
+  Typography,
+} from "@mui/material";
 import CustomNumberInput from "../../components/CustomNumberInput";
 import { useState } from "react";
 import UserCard from "../../components/UserCard";
 import { useRecentUsers } from "../../hooks/users.hooks";
+import { ErrorComponent } from "../../components/ErrorComponent";
 
 const RecentUsersPage = () => {
   const [numInputValue, setNumInputValue] = useState<number | null>(null);
   const [numUsers, setNumUsers] = useState<number>(0);
+  const [formError, setFormError] = useState<string | undefined>(undefined);
 
   const { data: users, isLoading, isError, error } = useRecentUsers(numUsers);
 
-  if (isError) {
-    return <div>{error.message}</div>;
-  }
+  const handleInputValChange = (val: number | null) => {
+    if (val && val < 0) {
+      setFormError("Number of Users Must be Postive");
+    } else {
+      setFormError(undefined);
+      setNumInputValue(val);
+    }
+  };
 
   return (
     <Box
@@ -32,10 +46,20 @@ const RecentUsersPage = () => {
           Most Recent Users
         </Typography>
         <Box marginY="15px" marginX="30px">
-          <CustomNumberInput
-            value={numInputValue}
-            setValue={setNumInputValue}
-          />
+          <FormControl variant="standard" fullWidth>
+            <CustomNumberInput
+              value={numInputValue}
+              setValue={handleInputValChange}
+            />
+            {formError && (
+              <FormHelperText
+                id="component-error-text"
+                sx={{ color: "#B94A48" }}
+              >
+                {formError}
+              </FormHelperText>
+            )}
+          </FormControl>
         </Box>
         <Box marginX="30px">
           <Button
@@ -63,7 +87,9 @@ const RecentUsersPage = () => {
           padding: "20px",
         }}
       >
-        {isLoading || !users ? (
+        {isError || error ? (
+          <ErrorComponent errorMessage={error.message} />
+        ) : isLoading || !users ? (
           <CircularProgress />
         ) : (
           users.map((user, idx) => (
