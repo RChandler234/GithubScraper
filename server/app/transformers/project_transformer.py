@@ -10,4 +10,5 @@ def project_transformer(project_model):
         "forks": project_model.forks,
         "stars": project_model.stars,
         "created_at": project_model.created_at.isoformat(),
+        "username": project_model.user.username,
     }

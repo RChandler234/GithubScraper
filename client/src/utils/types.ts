@@ -7,6 +7,7 @@ export interface Project {
   forks: number;
   stars: number;
   createdAt: Date;
+  username: string;
 }
 
 export interface User {
@@ -23,6 +24,7 @@ export interface RequestBodyProject {
   forks: number;
   stars: number;
   created_at: string;
+  username: string;
 }
 
 export interface RequestBodyUser {

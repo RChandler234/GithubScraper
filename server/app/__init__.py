@@ -11,7 +11,7 @@ import os
 migrate = Migrate()
 
 
-def run_server():
+def create_app():
     app = Flask(__name__)
     api = Api(app)
     swagger = Swagger(app)
@@ -55,4 +55,12 @@ def run_server():
     app.register_error_handler(ServerException, handle_custom_exception)
     app.register_error_handler(500, handle_internal_exception)
 
+    return app
+
+def run_app_prod():
+    app = create_app()
     app.run(host="0.0.0.0", port=5000)
+
+def run_app_dev():
+    app = create_app()
+    app.run(host="0.0.0.0", port=5000, debug=True)
