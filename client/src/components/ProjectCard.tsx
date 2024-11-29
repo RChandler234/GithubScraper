@@ -3,6 +3,9 @@ import { Project } from "../utils/types";
 import StarIcon from "@mui/icons-material/Star";
 import AltRouteIcon from "@mui/icons-material/AltRoute";
 
+/**
+ * Card Component to Visualize Project Metadata
+ */
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <Card sx={{ width: "100%", border: "solid 1px #E0E0E0" }}>

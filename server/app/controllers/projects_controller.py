@@ -2,7 +2,6 @@ from app.services.projects_services import ProjectsService
 from app.utils.error import ServerException
 from flask_restful import Resource
 import re
-from app.services.users_services import UsersService
 
 GITHUB_USERNAME_REGEX = re.compile("^[a-zA-Z0-9-]+$")
 
@@ -23,6 +22,6 @@ class ProjectsGETByUsernameResource(Resource):
         if len(username) < 1 or len(username) > 39:
             raise ServerException("Invalid Username. Must be between 1 and 39 characters long", 400)
         
-        projects = UsersService.find_user_projects(username)
+        projects = ProjectsService.get_projects_by_username(username)
         
         return {"projects": projects}

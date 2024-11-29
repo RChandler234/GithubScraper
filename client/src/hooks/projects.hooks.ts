@@ -1,6 +1,9 @@
 import { useQuery } from "react-query";
 import { Project } from "../utils/types";
-import { getMostStarredProjects } from "../apis/projects.api";
+import {
+  getMostStarredProjects,
+  getProjectsByUsername,
+} from "../apis/projects.api";
 
 /**
  * Custom React Hook to supply the n most starred projects
@@ -16,6 +19,25 @@ export const useMostStarredProjects = (numProjects: number) => {
     },
     {
       retry: 1,
+    }
+  );
+};
+
+/**
+ * Custom React Hook to fetch a users projects
+ *
+ * @param username the username of the user whose projects are being fetched
+ */
+export const useProjectsByUsername = (username: string) => {
+  return useQuery<Project[], Error>(
+    ["projects", username],
+    async () => {
+      const data = await getProjectsByUsername(username);
+      return data;
+    },
+    {
+      // The query will not execute unless a non-empty username is entered
+      enabled: username.length > 0,
     }
   );
 };

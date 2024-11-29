@@ -8,10 +8,10 @@ import {
 } from "@mui/material";
 import ProjectCard from "../../components/ProjectCard";
 import { useState } from "react";
-import { useUserProjects } from "../../hooks/users.hooks";
 import CustomStringInput from "../../components/CustomTextInput";
 import { Project } from "../../utils/types";
 import { ErrorComponent } from "../../components/ErrorComponent";
+import { useProjectsByUsername } from "../../hooks/projects.hooks";
 
 const GITHUB_USERNAME_REGEX = /^[a-zA-Z0-9-]+$/;
 
@@ -36,7 +36,7 @@ const UserProjectsPage = () => {
     isLoading,
     isError,
     error,
-  } = useUserProjects(username);
+  } = useProjectsByUsername(username);
 
   let displayProjects: Project[] = [];
   if (username.length > 0) {

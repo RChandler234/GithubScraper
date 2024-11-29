@@ -72,7 +72,7 @@ from app.utils.error import ServerException
 
 
 api.add_resource(ProjectsGETMostStarredResource, '/projects/most-starred/<int:num_projects>')
-api.add_resource(ProjectsGETByUsernameResource, '/users/projects/<string:username>' )
+api.add_resource(ProjectsGETByUsernameResource, '/projects/username/<string:username>' )
 api.add_resource(UsersGETMostRecentResource,'/users/most-recent/<int:num_users>')
 
 

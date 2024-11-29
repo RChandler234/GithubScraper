@@ -7,8 +7,6 @@ const API_URL: string =
 
 /**************** Users Endpoints ****************/
 const users = () => `${API_URL}/users`;
-const usersProjectsByUsername = (username: string) =>
-  `${users()}/projects/${username}`;
 const usersMostRecent = (maxNumUsers: number) =>
   `${users()}/most-recent/${maxNumUsers}`;
 
@@ -16,12 +14,14 @@ const usersMostRecent = (maxNumUsers: number) =>
 const projects = () => `${API_URL}/projects`;
 const projectsMostStarred = (maxNumProjects: number) =>
   `${projects()}/most-starred/${maxNumProjects}`;
+const projectsByUsername = (username: string) =>
+  `${projects()}/username/${username}`;
 
 export const apiUrls = {
   users,
-  usersProjectsByUsername,
   usersMostRecent,
 
   projects,
+  projectsByUsername,
   projectsMostStarred,
 };
