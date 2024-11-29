@@ -5,9 +5,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.sql import func
 from flask_cors import CORS
+from flasgger import Swagger
+from flask_restful import Api
+
 
 
 app = Flask(__name__)
+api = Api(app)
+swagger = Swagger(app)
 
 # TODO: env var
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+pg8000://postgres@localhost:5432/postgres"
@@ -60,12 +65,16 @@ class ProjectsModel(db.Model):
 def root():
     return "Welcome to GithubScraper!"
 
-from app.controllers.projects_controller import projects
-from app.controllers.users_controller import users
+from app.controllers.projects_controller import ProjectsGETByUsernameResource, ProjectsGETMostStarredResource
+from app.controllers.users_controller import UsersGETMostRecentResource
 from app.utils.error import ServerException
 
-app.register_blueprint(users, url_prefix='/users')
-app.register_blueprint(projects, url_prefix='/projects')
+
+
+api.add_resource(ProjectsGETMostStarredResource, '/projects/most-starred/<int:num_projects>')
+api.add_resource(ProjectsGETByUsernameResource, '/users/projects/<string:username>' )
+api.add_resource(UsersGETMostRecentResource,'/users/most-recent/<int:num_users>')
+
 
 @app.errorhandler(ServerException)
 def handle_exception(error):

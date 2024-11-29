@@ -1,9 +1,13 @@
 def project_transformer(project_model):
+    """
+    Transforms the Project type returned by the database into a type into a serializable dict
+    """
     return {
-                "userid": project_model.userid,
+                "id": str(project_model.id),
+                "userid": str(project_model.userid),
                 "name": project_model.name,
                 "description": project_model.description,
                 "forks": project_model.forks,
                 "stars": project_model.stars,
-                "created_at": project_model.created_at
+                "created_at": project_model.created_at.isoformat()
             } 
