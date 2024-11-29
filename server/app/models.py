@@ -27,8 +27,7 @@ class ProjectsModel(db.Model):
     __tablename__ = "projects"
 
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    # TODO: fix naming convention
-    userid = db.Column(UUID(as_uuid=True), db.ForeignKey("users.id"))
+    user_id = db.Column(UUID(as_uuid=True), db.ForeignKey("users.id"))
     name = db.Column(db.String())
     description = db.Column(db.String())
     forks = db.Column(db.Integer)
@@ -36,8 +35,8 @@ class ProjectsModel(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     user = db.relationship("UsersModel", back_populates="projects")
 
-    def __init__(self, userid, name, description, forks, stars):
-        self.userid = userid
+    def __init__(self, user_id, name, description, forks, stars):
+        self.user_id = user_id
         self.name = name
         self.description = description
         self.forks = forks

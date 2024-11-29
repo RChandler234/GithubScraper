@@ -28,6 +28,10 @@ export const getProjectsByUsername = async (
 ): Promise<Project[]> => {
   const data = await sendAPIRequest(apiUrls.projectsByUsername(username));
   return data.projects.map((project: RequestBodyProject) => {
-    return { ...project, createdAt: new Date(project.created_at) };
+    return {
+      ...project,
+      userId: project.user_id,
+      createdAt: new Date(project.created_at),
+    };
   });
 };

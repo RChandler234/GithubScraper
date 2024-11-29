@@ -12,6 +12,10 @@ Run `poetry test` to run the test suite
 
 Run `poetry prod` to run the app in production mode
 
+`poetry run flask db init`
+`poetry run flask db migrate`
+`poetry run flask db upgrade`
+
 ### Implementation Notes
 
 I'm using poetry aliases to setup easier aliases for running and testing the server

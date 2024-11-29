@@ -99,7 +99,7 @@ const StarredProjectsPage = () => {
         ) : (
           projects.map((project, idx) => (
             <Box
-              key={`${project.name}-${project.userid}-${idx}`}
+              key={`${project.name}-${project.userId}-${idx}`}
               marginBottom={"10px"}
               width="100%"
             >

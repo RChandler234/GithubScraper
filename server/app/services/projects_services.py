@@ -42,9 +42,9 @@ class ProjectsService:
             raise ServerException("Failed to Fetch Project: {}".format(e), 500)
 
     @staticmethod
-    def create_project(userid, name, description, forks, stars):
+    def create_project(user_id, name, description, forks, stars):
         try:
-            created_project = ProjectsModel(userid, name, description, forks, stars)
+            created_project = ProjectsModel(user_id, name, description, forks, stars)
             db.session.add(created_project)
             db.session.commit()
             return project_transformer(created_project)
@@ -52,9 +52,9 @@ class ProjectsService:
             raise ServerException("Failed to Create Project: {}".format(e), 500)
 
     @staticmethod
-    def get_projects_by_user_id(userid):
+    def get_projects_by_user_id(user_id):
         try:
-            projects = ProjectsModel.query.filter(ProjectsModel.userid == userid).all()
+            projects = ProjectsModel.query.filter(ProjectsModel.user_id == user_id).all()
             return list(map(project_transformer, projects))
         except Exception as e:
             raise ServerException("Failed to Fetch Projects: {}".format(e), 500)

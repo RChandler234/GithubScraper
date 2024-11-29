@@ -1,7 +1,7 @@
 /**** Frontend Types **********/
 
 export interface Project {
-  userid: string;
+  userId: string;
   name: string;
   description: string;
   forks: number;
@@ -18,7 +18,7 @@ export interface User {
 /***** Backend Types */
 
 export interface RequestBodyProject {
-  userid: string;
+  user_id: string;
   name: string;
   description: string;
   forks: number;

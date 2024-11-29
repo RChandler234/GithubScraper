@@ -4,7 +4,7 @@ def project_transformer(project_model):
     """
     return {
         "id": str(project_model.id),
-        "userid": str(project_model.userid),
+        "user_id": str(project_model.user_id),
         "name": project_model.name,
         "description": project_model.description,
         "forks": project_model.forks,
