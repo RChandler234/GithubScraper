@@ -5,6 +5,8 @@ from flasgger import Swagger
 from app.utils.custom_api import Api
 from flask_restful import Api
 from app.models import db
+from dotenv import load_dotenv
+import os
 
 migrate = Migrate()
 
@@ -13,14 +15,16 @@ def run_server():
     api = Api(app)
     swagger = Swagger(app)
 
-    # TODO: env var
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+pg8000://postgres@localhost:5432/postgres"
+    load_dotenv()
+    CLIENT_URL = os.getenv("CLIENT_URL")
+    DATABASE_URL = os.getenv("DATABASE_URL")
 
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # TODO: env var
-    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+    CORS(app, resources={r"/*": {"origins": CLIENT_URL}})
 
     from app.utils.error import ServerException, handle_custom_exception, handle_internal_exception, handle_not_found_error
     from app.controllers.projects_controller import ProjectsGETByUsernameResource, ProjectsGETMostStarredResource
