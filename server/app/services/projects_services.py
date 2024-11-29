@@ -1,4 +1,4 @@
-from app import ProjectsModel, db
+from app.models import ProjectsModel, db
 from app.transformers.project_transformer import project_transformer
 from app.utils.error import ServerException
 from app.services.users_services import UsersService

@@ -1,4 +1,4 @@
-from app import db, UsersModel
+from app.models import UsersModel, db
 from app.transformers.user_transformer import user_transformer
 from app.utils.error import ServerException
 
