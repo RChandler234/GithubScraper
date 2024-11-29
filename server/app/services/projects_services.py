@@ -9,6 +9,7 @@ class ProjectsService:
     """
     A service class responsible for handling interactions with the Project database model
     """
+
     @staticmethod
     def get_projects_by_username(username):
         projects = []
@@ -21,7 +22,13 @@ class ProjectsService:
             projects_data = ScrapingService.scrape_project_data(username)
             user = UsersService.create_user(username)
             for project in projects_data:
-                created_project = ProjectsService.create_project(user.get("id"), project["repo_name"], project["repo_description"], project["repo_forks"], project["repo_stars"])
+                created_project = ProjectsService.create_project(
+                    user.get("id"),
+                    project["repo_name"],
+                    project["repo_description"],
+                    project["repo_forks"],
+                    project["repo_stars"],
+                )
                 projects.append(created_project)
 
         return projects
@@ -33,7 +40,7 @@ class ProjectsService:
             return list(map(project_transformer, projects))
         except Exception as e:
             raise ServerException("Failed to Fetch Project: {}".format(e), 500)
-    
+
     @staticmethod
     def create_project(userid, name, description, forks, stars):
         try:
@@ -43,7 +50,7 @@ class ProjectsService:
             return project_transformer(created_project)
         except Exception as e:
             raise ServerException("Failed to Create Project: {}".format(e), 500)
-    
+
     @staticmethod
     def get_projects_by_user_id(userid):
         try:

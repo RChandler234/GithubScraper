@@ -2,10 +2,12 @@ from app.models import UsersModel, db
 from app.transformers.user_transformer import user_transformer
 from app.utils.error import ServerException
 
+
 class UsersService:
     """
     A service class responsible for handling interactions with the User database model
     """
+
     @staticmethod
     def get_user(username):
         try:
@@ -13,7 +15,7 @@ class UsersService:
             return user_transformer(user)
         except Exception as e:
             raise ServerException("Failed to Fetch User: {}".format(e), 500)
-    
+
     @staticmethod
     def create_user(username):
         try:
@@ -23,8 +25,7 @@ class UsersService:
             return user_transformer(created_user)
         except Exception as e:
             raise ServerException("Failed to Create User: {}".format(e), 500)
-        
-    
+
     @staticmethod
     def get_recent_users(n):
         try:
