@@ -35,6 +35,6 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-"prod" = "app:run_app_prod"
-"dev" = "app:run_app_dev"
+"start" = "app:run_app"
+"debug" = "app:run_app_debug"
 

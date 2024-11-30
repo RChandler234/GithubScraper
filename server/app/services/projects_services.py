@@ -7,11 +7,29 @@ from app.services.scraping_service import ScrapingService
 
 class ProjectsService:
     """
-    A service class responsible for handling interactions with the Project database model
+    A service class responsible for handling interactions with the Project Data
     """
 
     @staticmethod
     def get_projects_by_username(username):
+        """
+        Gets a profile's Github Projects given their Github Username
+        If the user already exists in the database, returns the stored projects
+        If the user doesn't exist, scrapes the project data from Github, stores the user and project data in the database,
+        and returns the projects
+
+        Args:
+            username (str): The username whose projects are being fetched
+
+        Returns:
+            Project[]: A list of projects
+
+        Raises:
+            ServerException: Failed to Fetch Projects
+            ServerException: Failed to Fetch Project Data from Github
+            ServerException: Failed to Create User
+            ServerException: Failed to Create Project
+        """
         projects = []
 
         try:
@@ -34,15 +52,45 @@ class ProjectsService:
         return projects
 
     @staticmethod
-    def get_most_starred_projects(n):
+    def get_most_starred_projects(num_projects):
+        """
+        Gets n most starred projects from the database
+
+        Args:
+            num_projects (int): The number of most starred projects to return
+
+        Returns:
+            Project[]: A list of projects
+
+        Raises:
+            ServerException: Failed to Fetch Projects
+        """
         try:
-            projects = ProjectsModel.query.order_by(ProjectsModel.stars.desc()).limit(n)
+            projects = ProjectsModel.query.order_by(ProjectsModel.stars.desc()).limit(
+                num_projects
+            )
             return list(map(project_transformer, projects))
         except Exception as e:
             raise ServerException("Failed to Fetch Project: {}".format(e), 500)
 
     @staticmethod
     def create_project(user_id, name, description, forks, stars):
+        """
+        Create a new project
+
+        Args:
+            user_id (str): The number of most starred projects to return
+            name (str): The name of the project
+            description (str): The description of the project
+            forks (int): The number of forks the project has
+            stars (int): The number of stars the project has
+
+        Returns:
+            Project: Created Project
+
+        Raises:
+            ServerException: Failed to Create Project
+        """
         try:
             created_project = ProjectsModel(user_id, name, description, forks, stars)
             db.session.add(created_project)
@@ -53,8 +101,22 @@ class ProjectsService:
 
     @staticmethod
     def get_projects_by_user_id(user_id):
+        """
+        Gets projects by user id
+
+        Args:
+            user_id (str): The id of the user whose projects are being returned
+
+        Returns:
+            Project[]: A list of projects
+
+        Raises:
+            ServerException: Failed to Fetch Projects
+        """
         try:
-            projects = ProjectsModel.query.filter(ProjectsModel.user_id == user_id).all()
+            projects = ProjectsModel.query.filter(
+                ProjectsModel.user_id == user_id
+            ).all()
             return list(map(project_transformer, projects))
         except Exception as e:
             raise ServerException("Failed to Fetch Projects: {}".format(e), 500)

@@ -12,9 +12,20 @@ migrate = Migrate()
 
 
 def create_app():
+    """
+    Creates and configures flask app
+    """
     app = Flask(__name__)
     api = Api(app)
-    swagger = Swagger(app)
+    swagger = Swagger(
+        app,
+        template={
+            "info": {
+                "title": "Github Project Scraper API",
+                "description": "API for scraping user project data from Github and accessing that data for later use",
+            }
+        },
+    )
 
     load_dotenv()
     CLIENT_URL = os.getenv("CLIENT_URL")
@@ -57,10 +68,18 @@ def create_app():
 
     return app
 
-def run_app_prod():
+
+def run_app():
+    """
+    Runs App
+    """
     app = create_app()
     app.run(host="0.0.0.0", port=5000)
 
-def run_app_dev():
+
+def run_app_debug():
+    """
+    Runs App in Debug Mode
+    """
     app = create_app()
     app.run(host="0.0.0.0", port=5000, debug=True)

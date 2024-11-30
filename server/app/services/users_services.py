@@ -5,11 +5,23 @@ from app.utils.error import ServerException
 
 class UsersService:
     """
-    A service class responsible for handling interactions with the User database model
+    A service class responsible for handling interactions with the User Data
     """
 
     @staticmethod
     def get_user(username):
+        """
+        Gets a user given their username
+
+        Args:
+            username (str): The username of the user being fetched
+
+        Returns:
+            User: A user
+
+        Raises:
+            ServerException: Failed to Fetch User
+        """
         try:
             user = UsersModel.query.filter(UsersModel.username == username).first()
             return user_transformer(user)
@@ -18,6 +30,18 @@ class UsersService:
 
     @staticmethod
     def create_user(username):
+        """
+        Gets a user given their username
+
+        Args:
+            username (str): The username of the user being created
+
+        Returns:
+            User: A user
+
+        Raises:
+            ServerException: Failed to Create User
+        """
         try:
             created_user = UsersModel(username=username)
             db.session.add(created_user)
@@ -27,9 +51,23 @@ class UsersService:
             raise ServerException("Failed to Create User: {}".format(e), 500)
 
     @staticmethod
-    def get_recent_users(n):
+    def get_recent_users(num_users):
+        """
+        Gets n most recently created users
+
+        Args:
+            num_users (int): The number of recent users to fetch
+
+        Returns:
+            User[]: A list of users
+
+        Raises:
+            ServerException: Failed to Fetch Users
+        """
         try:
-            users = UsersModel.query.order_by(UsersModel.created_at.desc()).limit(n)
+            users = UsersModel.query.order_by(UsersModel.created_at.desc()).limit(
+                num_users
+            )
             return list(map(user_transformer, users))
         except Exception as e:
             raise ServerException("Failed to Fetch Users: {}".format(e), 500)

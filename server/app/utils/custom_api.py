@@ -4,7 +4,7 @@ from flask_restful import Api as _Api, HTTPException
 class Api(_Api):
     """
     Overriden Custom Flask API class to keep Flask-RESTful
-    from handling errors other than HTTPException ones.
+    from handling errors other than HTTPException ones
     https://stackoverflow.com/questions/56049481/why-is-my-flask-error-handler-not-being-called
     """
 
