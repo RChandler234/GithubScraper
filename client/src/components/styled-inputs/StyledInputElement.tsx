@@ -1,6 +1,10 @@
 import { styled } from "@mui/system";
 import { grey } from "./colors";
 
+/**
+ * Styled Input Element for Custom Inputs
+ * Taken from https://mui.com/base-ui/react-number-input/
+ */
 const StyledInputElement = styled("input")(
   ({ theme }) => `
     font-size: 0.875rem;

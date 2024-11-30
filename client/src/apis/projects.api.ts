@@ -1,5 +1,5 @@
 import { sendAPIRequest } from "../utils/api-request";
-import { Project, RequestBodyProject } from "../utils/types";
+import { Project, APIResponseProject } from "../utils/types";
 import { apiUrls } from "../utils/urls";
 
 /**
@@ -12,7 +12,7 @@ export const getMostStarredProjects = async (
   numProjects: number
 ): Promise<Project[]> => {
   const data = await sendAPIRequest(apiUrls.projectsMostStarred(numProjects));
-  return data.projects.map((project: RequestBodyProject) => {
+  return data.projects.map((project: APIResponseProject) => {
     return { ...project, createdAt: new Date(project.created_at) };
   });
 };
@@ -27,7 +27,7 @@ export const getProjectsByUsername = async (
   username: string
 ): Promise<Project[]> => {
   const data = await sendAPIRequest(apiUrls.projectsByUsername(username));
-  return data.projects.map((project: RequestBodyProject) => {
+  return data.projects.map((project: APIResponseProject) => {
     return {
       ...project,
       userId: project.user_id,

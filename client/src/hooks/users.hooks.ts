@@ -13,9 +13,6 @@ export const useRecentUsers = (numUsers: number) => {
     async () => {
       const data = await getRecentUsers(numUsers);
       return data;
-    },
-    {
-      retry: 1,
     }
   );
 };

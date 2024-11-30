@@ -15,6 +15,9 @@ import { useProjectsByUsername } from "../../hooks/projects.hooks";
 
 const GITHUB_USERNAME_REGEX = /^[a-zA-Z0-9-]+$/;
 
+/**
+ * Main User Projects Page Component
+ */
 const UserProjectsPage = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [username, setUsername] = useState<string>("");

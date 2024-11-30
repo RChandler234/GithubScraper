@@ -12,6 +12,9 @@ import CustomNumberInput from "../../components/CustomNumberInput";
 import { useState } from "react";
 import { ErrorComponent } from "../../components/ErrorComponent";
 
+/**
+ * Main Starred Projects Page Component
+ */
 const StarredProjectsPage = () => {
   const [numInputValue, setNumInputValue] = useState<number | null>(null);
   const [numProjects, setNumProjects] = useState<number>(0);

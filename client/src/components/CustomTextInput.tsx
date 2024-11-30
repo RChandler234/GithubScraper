@@ -5,7 +5,7 @@ import StyledInputElement from "./styled-inputs/StyledInputElement";
 
 /**
  * Custom String Input Component
- * Taken from https://mui.com/base-ui/react-number-input/
+ * Adapted from https://mui.com/base-ui/react-number-input/
  */
 const StringInput = React.forwardRef(function CustomNumberInput(
   props: InputBaseComponentProps,

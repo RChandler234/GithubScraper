@@ -1,3 +1,6 @@
+/**
+ * Custom Error Type to Match Errors from API
+ */
 class ServerError extends Error {
   status_code: number;
   error: string;
@@ -9,6 +12,9 @@ class ServerError extends Error {
   }
 }
 
+/**
+ * Wrapper for Javascript fetch method for handling Errors and parsing JSON
+ */
 export const sendAPIRequest = async (url: string) => {
   const response = await fetch(url);
 

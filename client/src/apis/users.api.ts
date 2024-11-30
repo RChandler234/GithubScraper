@@ -1,5 +1,5 @@
 import { sendAPIRequest } from "../utils/api-request";
-import { RequestBodyUser, User } from "../utils/types";
+import { APIResponseUser, User } from "../utils/types";
 import { apiUrls } from "../utils/urls";
 
 /**
@@ -10,7 +10,7 @@ import { apiUrls } from "../utils/urls";
  */
 export const getRecentUsers = async (numUsers: number): Promise<User[]> => {
   const data = await sendAPIRequest(apiUrls.usersMostRecent(numUsers));
-  return data.users.map((user: RequestBodyUser) => {
+  return data.users.map((user: APIResponseUser) => {
     return { ...user, createdAt: new Date(user.created_at) };
   });
 };

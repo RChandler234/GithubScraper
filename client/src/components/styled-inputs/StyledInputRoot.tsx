@@ -2,6 +2,10 @@ import { numberInputClasses } from "@mui/base/Unstable_NumberInput";
 import { styled } from "@mui/system";
 import { blue, grey } from "./colors";
 
+/**
+ * Styled Input Element for Custom Inputs
+ * Taken from https://mui.com/base-ui/react-number-input/
+ */
 const StyledInputRoot = styled("div")(
   ({ theme }) => `
     font-family: 'IBM Plex Sans', sans-serif;

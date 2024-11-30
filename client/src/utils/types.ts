@@ -1,4 +1,4 @@
-/**** Frontend Types **********/
+/****************** Frontend Types *********************/
 
 export interface Project {
   userId: string;
@@ -15,9 +15,9 @@ export interface User {
   createdAt: Date;
 }
 
-/***** Backend Types */
+/************* Types for Data in Responses from API ********/
 
-export interface RequestBodyProject {
+export interface APIResponseProject {
   user_id: string;
   name: string;
   description: string;
@@ -27,7 +27,7 @@ export interface RequestBodyProject {
   username: string;
 }
 
-export interface RequestBodyUser {
+export interface APIResponseUser {
   username: string;
   created_at: string;
 }

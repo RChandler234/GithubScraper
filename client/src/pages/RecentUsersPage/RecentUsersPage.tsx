@@ -12,6 +12,9 @@ import UserCard from "../../components/UserCard";
 import { useRecentUsers } from "../../hooks/users.hooks";
 import { ErrorComponent } from "../../components/ErrorComponent";
 
+/**
+ * Main Recent Users Page Component
+ */
 const RecentUsersPage = () => {
   const [numInputValue, setNumInputValue] = useState<number | null>(null);
   const [numUsers, setNumUsers] = useState<number>(0);

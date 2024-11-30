@@ -2,6 +2,10 @@ import { numberInputClasses } from "@mui/base/Unstable_NumberInput";
 import { styled } from "@mui/system";
 import { blue, grey } from "./colors";
 
+/**
+ * Styled Button for CustomNumberInput
+ * Taken from https://mui.com/base-ui/react-number-input/
+ */
 const StyledButton = styled("button")(
   ({ theme }) => `
     display: flex;

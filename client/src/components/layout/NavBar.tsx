@@ -36,7 +36,7 @@ const NAV_BUTTONS = [
 ];
 
 /**
- * Responsive NavBar (https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu)
+ * Custom Responsive NavBar (https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu)
  */
 const NavBar = () => {
   const navigate = useNavigate();

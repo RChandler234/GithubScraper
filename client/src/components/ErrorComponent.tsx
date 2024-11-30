@@ -1,5 +1,8 @@
 import { Box } from "@mui/material";
 
+/**
+ * Basic Error Component
+ */
 export const ErrorComponent = ({ errorMessage }: { errorMessage: string }) => {
   return (
     <Box
