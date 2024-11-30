@@ -1,0 +1,11 @@
+services:
+  postgres-database:
+    container_name: postgres-database
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 5432:5432
+    expose:
+      - 5432

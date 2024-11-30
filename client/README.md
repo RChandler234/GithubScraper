@@ -10,6 +10,8 @@ Run `npm install` to install the project dependencies
 
 Run `npm run dev` to run the project in development mode
 
+Once this works you can go to `http://localhost:5173/` to view the application
+
 ## Use Cases
 
 There is a different page for each of the following use cases:
