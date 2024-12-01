@@ -11,7 +11,7 @@ import os
 migrate = Migrate()
 
 
-def create_app():
+def create_app(config=None):
     """
     Creates and configures flask app
     """
@@ -32,6 +32,9 @@ def create_app():
     DATABASE_URL = os.getenv("DATABASE_URL")
 
     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+
+    if config:
+        app.config.update(config)
 
     db.init_app(app)
     migrate.init_app(app, db)

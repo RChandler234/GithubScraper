@@ -62,6 +62,6 @@ class ProjectsGETByUsernameResource(Resource):
                 "Invalid Username. Must be between 1 and 39 characters long", 400
             )
 
-        projects = ProjectsService.get_projects_by_username(username)
+        projects = ProjectsService.fetch_github_projects_by_username(username)
 
         return {"projects": projects}

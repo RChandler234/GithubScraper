@@ -8,25 +8,6 @@ class UsersService:
     A service class responsible for handling interactions with the User Data
     """
 
-    @staticmethod
-    def get_user(username):
-        """
-        Gets a user given their username
-
-        Args:
-            username (str): The username of the user being fetched
-
-        Returns:
-            User: A user
-
-        Raises:
-            ServerException: Failed to Fetch User
-        """
-        try:
-            user = UsersModel.query.filter(UsersModel.username == username).first()
-            return user_transformer(user)
-        except Exception as e:
-            raise ServerException("Failed to Fetch User: {}".format(e), 500)
 
     @staticmethod
     def create_user(username):
