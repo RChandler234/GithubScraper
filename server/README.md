@@ -1,6 +1,6 @@
 # Github Scraper Server
 
-REST API to manage database interactions and github scraping. Written in Python using Flask as a server framework and Poetry for package management
+REST API to manage database interactions and Github scraping. Written in Python using Flask as a server framework and Poetry for package management
 
 ## Local Development
 
@@ -33,8 +33,6 @@ CLIENT_URL="http://localhost:5173"
 Then run the following commands to initialize the database:
 
 ```
-poetry run flask db init
-poetry run flask db migrate
 poetry run flask db upgrade
 ```
 
