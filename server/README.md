@@ -52,6 +52,8 @@ Congratulations! You've successfully setup the server, you can now run the clien
 
 Run `poetry test` to run the test suite
 
+Run `poetry test -v` to run the test suite and see a more detailed output
+
 Run `poetry debug` to run this app in debug mode
 
 Run `poetry run black .` to run the code formatter
@@ -62,8 +64,6 @@ This application uses Swagger, go to http://127.0.0.1:5000/apidocs, to see the a
 
 ## Implementation Notes
 
-I'm using poetry aliases to setup easier aliases for running and testing the server
-
-I'm using pytest to run the tests and waitress to serve the application in production mode
+I'm using pytest to run the tests
 
 I'm using SQL-Alchemy as the ORM for database interactions, and I'm using FlaskMigrate (Alembic under the hood) to manage migrations. (using pg8000 to do the actual db interactions since it's a pure python postgresql driver, allows me to avoid system dependecy issues)

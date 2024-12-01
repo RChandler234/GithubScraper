@@ -12,18 +12,10 @@ Follow the Instructions in the [Server README](./server/README) and then the [Cl
 
 When running the server, go to http://127.0.0.1:5000/apidocs to see the auto-generated Swagger docs
 
-## Docker
-
-If you have Docker installed, run the following commands to spin up this application in Docker:
-
-`docker compose pull`
-
-`docker compose up`
-
 ## CodeGen
 
 I used [create-vite](https://vite.dev/guide/) to make the starter code for the frontend
 
 I used [poetry new](https://python-poetry.org/docs/basic-usage/) to generate the starter poetry project for the backend
 
-I used ChatGPT for suggestions and debugging issues as I was figuring out how to setup the poetry/ flask backend since I haven't worked with them in-depth before. I particularly had issues with circular imports in python, setting up SQLAlchemy initially, and all the project.toml configuration stuff at first. I also used it for color suggestions for the frontend and debugging some CSS issues I had trying to make sure only the cards were scrollable on the querying pages
+I used ChatGPT for suggestions and debugging issues as I was figuring out how to setup the poetry/ flask backend since I haven't worked with them in-depth before. I particularly had issues with circular imports in python, setting up SQLAlchemy initially, and all the project.toml configuration stuff at first. I also used it for color suggestions for the frontend and debugging some CSS issues I had trying to make sure only the cards were scrollable on the querying pages. I also used it for figuring out how to get started on the test setup/ mocking (I'm used to jest in typescript)
