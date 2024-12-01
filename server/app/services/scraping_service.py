@@ -1,3 +1,5 @@
+from typing import List
+import bs4
 import requests
 from bs4 import BeautifulSoup
 from app.utils.error import ServerException
@@ -8,7 +10,7 @@ class ScrapingService:
     A service class responsible for handling web scraping tasks
     """
 
-    def __fetch_repository_list(username):
+    def __fetch_repository_list(username: str) -> List[bs4.element.Tag]:
         """
         Fetches a list of repository tags from Github for a given github Username
 
@@ -29,7 +31,7 @@ class ScrapingService:
 
         return repository_list_tags
 
-    def __fetch_repo_description(repo_tag, username, repo_name):
+    def __fetch_repo_description(repo_tag: bs4.element.Tag, username: str, repo_name: str) -> str:
         """
         Fetches the decscription of a Repository from Github, given an HTML tag, Github Username, and Repository name
         If the description exceeds 195 characters, an additional request to the specific repository page is made since the
@@ -62,7 +64,7 @@ class ScrapingService:
                     repo_description = repo_description_tag.get_text().strip()
 
     @staticmethod
-    def scrape_project_data(username):
+    def scrape_project_data(username: str):
         """
         Scrape a user's project data from Github given their username
 
