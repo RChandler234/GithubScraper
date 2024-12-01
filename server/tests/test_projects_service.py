@@ -6,7 +6,6 @@ import uuid
 from unittest.mock import patch
 
 
-# TODO: Test Service methods and test controllers separately
 class ProjectsCreateProjectServiceTests(MyTest):
     def test_create_project_user_not_found(self):
         with self.assertRaises(ServerException) as context:
