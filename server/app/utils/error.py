@@ -14,7 +14,7 @@ def handle_not_found_error(error):
     """
     Error Handler for 404 Exceptions, so JSON is returned instead of HTML
     """
-    response = jsonify({"error": "Not Found", "status_code": 404})
+    response = jsonify({"message": "Not Found", "status_code": 404})
     response.status_code = 404
     return response
 
@@ -25,7 +25,7 @@ def handle_internal_exception(err):
     """
     if isinstance(err, ServerException):
         return None
-    response = jsonify({"error": "Internal Server Error", "status_code": 500})
+    response = jsonify({"message": "Internal Server Error", "status_code": 500})
     response.status_code = 500
     return response
 
