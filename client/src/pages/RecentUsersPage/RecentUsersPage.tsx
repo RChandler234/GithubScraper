@@ -27,7 +27,13 @@ const RecentUsersPage = () => {
       setFormError("Number of Users Must be Postive");
     } else {
       setFormError(undefined);
-      setNumInputValue(val);
+    }
+    setNumInputValue(val);
+  };
+
+  const handleButtonClick = () => {
+    if (!formError) {
+      setNumUsers(numInputValue || 0);
     }
   };
 
@@ -72,7 +78,7 @@ const RecentUsersPage = () => {
               backgroundColor: "#010409",
               border: "solid 1px #ffffffb3",
             }}
-            onClick={() => setNumUsers(numInputValue || 0)}
+            onClick={handleButtonClick}
           >
             Fetch Users
           </Button>

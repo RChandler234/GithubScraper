@@ -25,7 +25,13 @@ const StarredProjectsPage = () => {
       setFormError("Number of Users Must be Postive");
     } else {
       setFormError(undefined);
-      setNumInputValue(val);
+    }
+    setNumInputValue(val);
+  };
+
+  const handleButtonClick = () => {
+    if (!formError) {
+      setNumProjects(numInputValue || 0);
     }
   };
 
@@ -77,7 +83,7 @@ const StarredProjectsPage = () => {
               backgroundColor: "#010409",
               border: "solid 1px #ffffffb3",
             }}
-            onClick={() => setNumProjects(numInputValue || 0)}
+            onClick={handleButtonClick}
           >
             Fetch Projects
           </Button>
