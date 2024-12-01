@@ -34,7 +34,7 @@ class ProjectsGETMostStarredResource(Resource):
         return {"projects": projects}
 
 
-class ProjectsGETByUsernameResource(Resource):
+class ProjectsFETCHGithubProjectsByUsernameResource(Resource):
     def get(self, username):
         """
         Get projects for a given Github Username

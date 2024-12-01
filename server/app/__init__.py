@@ -48,7 +48,7 @@ def create_app(config=None):
         handle_not_found_error,
     )
     from app.controllers.projects_controller import (
-        ProjectsGETByUsernameResource,
+        ProjectsFETCHGithubProjectsByUsernameResource,
         ProjectsGETMostStarredResource,
     )
     from app.controllers.users_controller import UsersGETMostRecentResource
@@ -61,7 +61,8 @@ def create_app(config=None):
         ProjectsGETMostStarredResource, "/projects/most-starred/<int:num_projects>"
     )
     api.add_resource(
-        ProjectsGETByUsernameResource, "/projects/username/<string:username>"
+        ProjectsFETCHGithubProjectsByUsernameResource,
+        "/projects/username/<string:username>",
     )
     api.add_resource(UsersGETMostRecentResource, "/users/most-recent/<int:num_users>")
 

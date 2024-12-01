@@ -31,7 +31,9 @@ class ScrapingService:
 
         return repository_list_tags
 
-    def __fetch_repo_description(repo_tag: bs4.element.Tag, username: str, repo_name: str) -> str:
+    def __fetch_repo_description(
+        repo_tag: bs4.element.Tag, username: str, repo_name: str
+    ) -> str:
         """
         Fetches the decscription of a Repository from Github, given an HTML tag, Github Username, and Repository name
         If the description exceeds 195 characters, an additional request to the specific repository page is made since the

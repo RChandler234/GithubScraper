@@ -36,7 +36,10 @@ class ProjectsService:
         try:
             projects = ProjectsService.get_projects_by_username(username)
         except ServerException as e:
-            if (not e.message == "Failed to Fetch Projects: Username does not correspond to a user in the database"):
+            if (
+                not e.message
+                == "Failed to Fetch Projects: Username does not correspond to a user in the database"
+            ):
                 raise e
             else:
                 # If user does not exist in the database, fetch project data from github

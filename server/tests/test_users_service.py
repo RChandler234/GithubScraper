@@ -1,9 +1,10 @@
 from app.services.users_services import UsersService
 from app.utils.error import ServerException
 from tests.test_app import MyTest
-from app.models import ProjectsModel, UsersModel, db
+from app.models import UsersModel, db
 from unittest.mock import patch
 import time
+
 
 class UsersCreateUserServiceTests(MyTest):
     def test_username_already_exists(self):
@@ -12,7 +13,7 @@ class UsersCreateUserServiceTests(MyTest):
         db.session.add(user)
         db.session.commit()
         assert user in db.session
-        
+
         with self.assertRaises(ServerException) as context:
             UsersService.create_user("john")
 
@@ -37,21 +38,18 @@ class UsersCreateUserServiceTests(MyTest):
             )
 
             mock_commit.assert_called_once()
-            
-            db_user_list = UsersModel.query.filter(
-                UsersModel.username == "john"
-            ).all()
 
-            assert(len(db_user_list) == 0)
+            db_user_list = UsersModel.query.filter(UsersModel.username == "john").all()
 
-    def test_create_project_success(self):        
+            assert len(db_user_list) == 0
+
+    def test_create_project_success(self):
         user = UsersService.create_user("john")
 
-        db_user = UsersModel.query.filter(
-            UsersModel.username == "john"
-        ).first()
+        db_user = UsersModel.query.filter(UsersModel.username == "john").first()
 
         assert db_user.username == "john"
+
 
 class UsersGetMostRecentUsersServiceTests(MyTest):
     def test_get_users_no_users(self):

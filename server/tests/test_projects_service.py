@@ -314,9 +314,7 @@ class ProjectsFetchGithubProjectsByUsername(MyTest):
             mock_scrape_data.return_value = project_data_list
             ProjectsService.fetch_github_projects_by_username("john")
 
-            db_user = UsersModel.query.filter(
-                UsersModel.username == "john"
-            ).first()
+            db_user = UsersModel.query.filter(UsersModel.username == "john").first()
 
             assert db_user.username == "john"
 
@@ -331,7 +329,3 @@ class ProjectsFetchGithubProjectsByUsername(MyTest):
             assert db_project.description == project_data["repo_description"]
             assert db_project.forks == project_data["repo_forks"]
             assert db_project.stars == project_data["repo_stars"]
-
-
-
-

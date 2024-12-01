@@ -8,9 +8,8 @@ class UsersService:
     A service class responsible for handling interactions with the User Data
     """
 
-
     @staticmethod
-    def create_user(username):
+    def create_user(username: str):
         """
         Gets a user given their username
 
@@ -28,10 +27,8 @@ class UsersService:
             user = UsersModel.query.filter(UsersModel.username == username).first()
 
             if user:
-                raise ServerException(
-                    "Username already exists in the database", 500
-                )
-            
+                raise ServerException("Username already exists in the database", 500)
+
             created_user = UsersModel(username=username)
             db.session.add(created_user)
             db.session.commit()
@@ -41,7 +38,7 @@ class UsersService:
             raise ServerException("Failed to Create User: {}".format(e), 500)
 
     @staticmethod
-    def get_recent_users(num_users):
+    def get_recent_users(num_users: int):
         """
         Gets n most recently created users
 
@@ -55,9 +52,11 @@ class UsersService:
             ServerException: Failed to Fetch Users
         """
         try:
-            users = UsersModel.query.order_by(UsersModel.created_at.desc()).limit(
-                num_users
-            ).all()
+            users = (
+                UsersModel.query.order_by(UsersModel.created_at.desc())
+                .limit(num_users)
+                .all()
+            )
             return list(map(user_transformer, users))
         except Exception as e:
             raise ServerException("Failed to Fetch Users: {}".format(e), 500)

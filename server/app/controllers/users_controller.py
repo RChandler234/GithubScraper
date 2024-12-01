@@ -1,4 +1,3 @@
-from flask import Blueprint, jsonify
 from app.services.users_services import UsersService
 from app.utils.error import ServerException
 from flask_restful import Resource
