@@ -14,7 +14,7 @@ class ProjectsGETMostStarredResource(Resource):
         parameters:
           - in: path
             name: num_projects
-            type: int
+            type: integer
             required: true
         responses:
           200:

@@ -3,7 +3,6 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from flasgger import Swagger
 from app.utils.custom_api import Api
-from flask_restful import Api
 from app.models import db
 from dotenv import load_dotenv
 import os
